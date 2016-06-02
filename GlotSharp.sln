@@ -5,6 +5,10 @@ VisualStudioVersion = 14.0.25123.0
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GlotSharp", "GlotSharp\GlotSharp.csproj", "{22AB6844-EA99-416A-84F1-6F1D46AB57C5}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GlotSharp.Sample", "GlotSharp.Sample\GlotSharp.Sample.csproj", "{7EAB09AD-04AA-447F-B17C-7E7BD6AD3902}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GlotSharp.Tests", "GlotSharp.Tests\GlotSharp.Tests.csproj", "{F10BDD50-4FD6-4148-8FA6-3B607EF89527}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -15,6 +19,14 @@ Global
 		{22AB6844-EA99-416A-84F1-6F1D46AB57C5}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{22AB6844-EA99-416A-84F1-6F1D46AB57C5}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{22AB6844-EA99-416A-84F1-6F1D46AB57C5}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7EAB09AD-04AA-447F-B17C-7E7BD6AD3902}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7EAB09AD-04AA-447F-B17C-7E7BD6AD3902}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7EAB09AD-04AA-447F-B17C-7E7BD6AD3902}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7EAB09AD-04AA-447F-B17C-7E7BD6AD3902}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F10BDD50-4FD6-4148-8FA6-3B607EF89527}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F10BDD50-4FD6-4148-8FA6-3B607EF89527}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F10BDD50-4FD6-4148-8FA6-3B607EF89527}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F10BDD50-4FD6-4148-8FA6-3B607EF89527}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

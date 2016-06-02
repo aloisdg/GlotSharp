@@ -2,10 +2,9 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Threading.Tasks;
 
-namespace GlotSharp
-{
-    public class Class1
-    {
+namespace GlotSharp.Run {
+    class Client {
     }
 }
