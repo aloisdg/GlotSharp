@@ -1,7 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 using GlotSharp.Run;
 
@@ -27,14 +25,14 @@ namespace GlotSharp.Sample {
                 var pythonVersion = pythonVersions.First ();
                 Console.WriteLine (pythonVersion.Version);
 
-                var response = await client.RunAsync ("python", new Request {
+                var response = await client.RunAsync (new Request {
                     Files = new[] {
                         new File {
                             Name = "main.py",
                             Content = "print(42)"
                         }
                     }
-                }).ConfigureAwait (false);
+                }, LanguageType.Python).ConfigureAwait (false);
                 Console.WriteLine(response.StandardOutput);
             }
             Console.ReadLine ();
