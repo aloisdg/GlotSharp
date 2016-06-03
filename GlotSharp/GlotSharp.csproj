@@ -40,6 +40,7 @@
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Run\Client.cs" />
+    <Compile Include="Run\ClientToken.cs" />
     <Compile Include="Run\File.cs" />
     <Compile Include="Run\Language.cs" />
     <Compile Include="Run\LanguageType.cs" />

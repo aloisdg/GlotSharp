@@ -10,13 +10,11 @@ using Newtonsoft.Json;
 using Newtonsoft.Json.Serialization;
 
 namespace GlotSharp.Run {
-    public class Client : IDisposable {
+    public partial class Client : IDisposable {
         private static readonly HttpClient HttpClient = new HttpClient {
             BaseAddress = new Uri("https://run.glot.io/")
             //, DefaultRequestHeaders = { Accept = { new MediaTypeWithQualityHeaderValue("application/json") }}
         };
-
-        private const string Token = "";
 
         public async Task<IEnumerable<Language>> GetLanguagesAsync() {
             var json = await HttpClient.GetStringAsync ("languages").ConfigureAwait (false);
