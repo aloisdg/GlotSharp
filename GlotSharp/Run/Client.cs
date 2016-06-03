@@ -1,9 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Net.Http;
 using System.Net.Http.Headers;
-using System.Runtime.Serialization;
 using System.Text;
 using System.Threading.Tasks;
 using Newtonsoft.Json;
@@ -16,18 +14,16 @@ namespace GlotSharp.Run {
             //, DefaultRequestHeaders = { Accept = { new MediaTypeWithQualityHeaderValue("application/json") }} // useful?
         };
 
-        public async Task<IEnumerable<Language>> GetLanguagesAsync() {
-            var json = await HttpClient.GetStringAsync (string.Empty).ConfigureAwait (false);
-            return JsonConvert.DeserializeObject<IEnumerable<Language>> (json);
+        public Task<IEnumerable<Language>> GetLanguagesAsync() {
+            return GetAsync<Language>(string.Empty);
         }
 
         public Task<IEnumerable<LanguageVersion>> GetVersionsAsync(LanguageType language) {
             return GetVersionsAsync (language.ToString ().ToLowerInvariant ());
         }
 
-        public async Task<IEnumerable<LanguageVersion>> GetVersionsAsync(string language) {
-            var json = await HttpClient.GetStringAsync (language).ConfigureAwait (false);
-            return JsonConvert.DeserializeObject<IEnumerable<LanguageVersion>> (json);
+        public Task<IEnumerable<LanguageVersion>> GetVersionsAsync(string language) {
+            return GetAsync<LanguageVersion>(language);
         }
 
         public Task<Response> RunAsync(Request request, LanguageType language, string version = "latest") {
@@ -55,6 +51,12 @@ namespace GlotSharp.Run {
 
         public void Dispose() {
             HttpClient.Dispose ();
+        }
+
+        private static async Task<IEnumerable<T>> GetAsync<T>(string uri)
+        {
+            var json = await HttpClient.GetStringAsync (uri).ConfigureAwait (false);
+            return JsonConvert.DeserializeObject<IEnumerable<T>> (json);
         }
     }
 }
