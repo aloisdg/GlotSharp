@@ -12,8 +12,8 @@ using Newtonsoft.Json.Serialization;
 namespace GlotSharp.Run {
     public partial class Client : IDisposable {
         private static readonly HttpClient HttpClient = new HttpClient {
-            BaseAddress = new Uri("https://run.glot.io/")
-            //, DefaultRequestHeaders = { Accept = { new MediaTypeWithQualityHeaderValue("application/json") }}
+            BaseAddress = new Uri("https://run.glot.io/languages/")
+            //, DefaultRequestHeaders = { Accept = { new MediaTypeWithQualityHeaderValue("application/json") }} // useful?
         };
 
         public async Task<IEnumerable<Language>> GetLanguagesAsync() {
