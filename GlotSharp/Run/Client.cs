@@ -15,7 +15,7 @@ namespace GlotSharp.Run {
         };
 
         public Task<IEnumerable<Language>> GetLanguagesAsync() {
-            return GetAsync<Language>(string.Empty);
+            return GetAsync<Language> (string.Empty);
         }
 
         public Task<IEnumerable<LanguageVersion>> GetVersionsAsync(LanguageType language) {
@@ -23,7 +23,7 @@ namespace GlotSharp.Run {
         }
 
         public Task<IEnumerable<LanguageVersion>> GetVersionsAsync(string language) {
-            return GetAsync<LanguageVersion>(language);
+            return GetAsync<LanguageVersion> (language);
         }
 
         public Task<Response> RunAsync(Request request, LanguageType language, string version = "latest") {
@@ -53,8 +53,7 @@ namespace GlotSharp.Run {
             HttpClient.Dispose ();
         }
 
-        private static async Task<IEnumerable<T>> GetAsync<T>(string uri)
-        {
+        private static async Task<IEnumerable<T>> GetAsync<T>(string uri) {
             var json = await HttpClient.GetStringAsync (uri).ConfigureAwait (false);
             return JsonConvert.DeserializeObject<IEnumerable<T>> (json);
         }
