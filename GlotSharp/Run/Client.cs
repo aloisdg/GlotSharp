@@ -17,7 +17,7 @@ namespace GlotSharp.Run {
         };
 
         public async Task<IEnumerable<Language>> GetLanguagesAsync() {
-            var json = await HttpClient.GetStringAsync ("languages").ConfigureAwait (false);
+            var json = await HttpClient.GetStringAsync (string.Empty).ConfigureAwait (false);
             return JsonConvert.DeserializeObject<IEnumerable<Language>> (json);
         }
 
@@ -25,8 +25,8 @@ namespace GlotSharp.Run {
             return GetVersionsAsync (languageType.ToString ().ToLowerInvariant ());
         }
 
-        public async Task<IEnumerable<LanguageVersion>> GetVersionsAsync(string name) {
-            var json = await HttpClient.GetStringAsync ($"languages/{name}").ConfigureAwait (false);
+        public async Task<IEnumerable<LanguageVersion>> GetVersionsAsync(string language) {
+            var json = await HttpClient.GetStringAsync (language).ConfigureAwait (false);
             return JsonConvert.DeserializeObject<IEnumerable<LanguageVersion>> (json);
         }
 
@@ -35,7 +35,7 @@ namespace GlotSharp.Run {
             var content = JsonConvert.SerializeObject (request, new JsonSerializerSettings {
                 ContractResolver = new CamelCasePropertyNamesContractResolver ()
             });
-            var httpRequest = new HttpRequestMessage (HttpMethod.Post, $"languages/{language}/latest") {
+            var httpRequest = new HttpRequestMessage (HttpMethod.Post, $"{language}/{version}") {
                 Headers = {
                     Authorization = new AuthenticationHeaderValue("Token", Token),
                     Accept = { new MediaTypeWithQualityHeaderValue("application/json")} // useful?
