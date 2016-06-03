@@ -21,8 +21,8 @@ namespace GlotSharp.Run {
             return JsonConvert.DeserializeObject<IEnumerable<Language>> (json);
         }
 
-        public Task<IEnumerable<LanguageVersion>> GetVersionsAsync(LanguageType languageType) {
-            return GetVersionsAsync (languageType.ToString ().ToLowerInvariant ());
+        public Task<IEnumerable<LanguageVersion>> GetVersionsAsync(LanguageType language) {
+            return GetVersionsAsync (language.ToString ().ToLowerInvariant ());
         }
 
         public async Task<IEnumerable<LanguageVersion>> GetVersionsAsync(string language) {
@@ -30,8 +30,12 @@ namespace GlotSharp.Run {
             return JsonConvert.DeserializeObject<IEnumerable<LanguageVersion>> (json);
         }
 
+        public Task<Response> RunAsync(Request request, LanguageType language, string version = "latest") {
+            return RunAsync (request, language.ToString ().ToLowerInvariant (), version);
+        }
+
         // todo: handle command https://github.com/prasmussen/glot-run/blob/master/api_docs/run.md#custom-run-command
-        public async Task<Response> RunAsync(string language, Request request) {
+        public async Task<Response> RunAsync(Request request, string language, string version = "latest") {
             var content = JsonConvert.SerializeObject (request, new JsonSerializerSettings {
                 ContractResolver = new CamelCasePropertyNamesContractResolver ()
             });
