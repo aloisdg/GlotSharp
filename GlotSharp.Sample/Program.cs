@@ -14,21 +14,30 @@ namespace GlotSharp.Sample {
 
         private static async Task MainAsync() {
 
-            using (var client = new Client ())
-            {
-                var languages = await client.GetLanguagesAsync().ConfigureAwait(false);
-                var language = languages.First();
-                Console.WriteLine(language);
+            using (var client = new Client ()) {
+                var languages = await client.GetLanguagesAsync ().ConfigureAwait (false);
+                var language = languages.First ();
+                Console.WriteLine (language);
 
-                var versions = await client.GetVersionsAsync(language.Name).ConfigureAwait(false);
-                var version = versions.First();
-                Console.WriteLine(version.Version);
+                var versions = await client.GetVersionsAsync (language.Name).ConfigureAwait (false);
+                var version = versions.First ();
+                Console.WriteLine (version.Version);
 
                 var pythonVersions = await client.GetVersionsAsync (LanguageType.Python).ConfigureAwait (false);
-                var pythonVersion = pythonVersions.First();
-                Console.WriteLine(pythonVersion.Version);
+                var pythonVersion = pythonVersions.First ();
+                Console.WriteLine (pythonVersion.Version);
+
+                var response = await client.RunAsync ("python", new Request {
+                    Files = new[] {
+                        new File {
+                            Name = "main.py",
+                            Content = "print(42)"
+                        }
+                    }
+                }).ConfigureAwait (false);
+                Console.WriteLine(response.StandardOutput);
             }
-            Console.ReadLine();
+            Console.ReadLine ();
         }
     }
 }
