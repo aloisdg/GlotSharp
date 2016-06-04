@@ -35,18 +35,18 @@ namespace GlotSharp.Run {
             var content = JsonConvert.SerializeObject (request, new JsonSerializerSettings {
                 ContractResolver = new CamelCasePropertyNamesContractResolver ()
             });
-            var httpRequest = new HttpRequestMessage (HttpMethod.Post, $"{language}/{version}") {
+            using (var httpRequest = new HttpRequestMessage (HttpMethod.Post, $"{language}/{version}") {
                 Headers = {
                     Authorization = new AuthenticationHeaderValue("Token", Token),
                     Accept = { new MediaTypeWithQualityHeaderValue("application/json")} // useful?
                 },
                 Content = new StringContent (content, Encoding.UTF8, "application/json")
-            };
-
-            var httpResponse = await HttpClient.SendAsync (httpRequest).ConfigureAwait (false);
-            var json = await httpResponse.Content.ReadAsStringAsync ().ConfigureAwait (false);
-            var response = JsonConvert.DeserializeObject<Response> (json);
-            return response;
+            }) {
+                var httpResponse = await HttpClient.SendAsync (httpRequest).ConfigureAwait (false);
+                var json = await httpResponse.Content.ReadAsStringAsync ().ConfigureAwait (false);
+                var response = JsonConvert.DeserializeObject<Response> (json);
+                return response;
+            }
         }
 
         public void Dispose() {
